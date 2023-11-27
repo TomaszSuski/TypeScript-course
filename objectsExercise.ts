@@ -42,7 +42,11 @@ const cats: Movie = {
 // For example...
 // getProfit(cats) => -21166652
 
-const getProfit = (movie: Movie): number =>
-  movie.boxOffice.grossWorldwide - movie.boxOffice.budget;
+// const getProfit = (movie: Movie): number =>
+//   movie.boxOffice.grossWorldwide - movie.boxOffice.budget;
 
-console.log('dune', getProfit(dune), 'cats', getProfit(cats));
+// destructured inline
+const getProfit = ({ boxOffice: { grossWorldwide, budget } }: Movie): number =>
+  grossWorldwide - budget;
+
+console.log("dune", getProfit(dune), "cats", getProfit(cats));
