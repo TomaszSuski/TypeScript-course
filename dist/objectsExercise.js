@@ -1,6 +1,7 @@
+"use strict";
 // Write the Movie type alias to make the following two variables properly typed
 // Make sure that "originalTitle" is optional and "title" is readonly
-var dune = {
+const dune = {
     title: "Dune",
     originalTitle: "Dune Part One",
     director: "Denis Villeneuve",
@@ -11,7 +12,7 @@ var dune = {
         grossWorldwide: 400671789,
     },
 };
-var cats = {
+const cats = {
     title: "Cats",
     director: "Tom Hooper",
     releaseYear: 2019,
@@ -28,8 +29,5 @@ var cats = {
 // const getProfit = (movie: Movie): number =>
 //   movie.boxOffice.grossWorldwide - movie.boxOffice.budget;
 // destructured inline
-var getProfit = function (_a) {
-    var _b = _a.boxOffice, grossWorldwide = _b.grossWorldwide, budget = _b.budget;
-    return grossWorldwide - budget;
-};
+const getProfit = ({ boxOffice: { grossWorldwide, budget } }) => grossWorldwide - budget;
 console.log("dune", getProfit(dune), "cats", getProfit(cats));
