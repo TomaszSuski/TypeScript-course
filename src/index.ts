@@ -11,15 +11,16 @@ interface Todo {
   completed: boolean;
 }
 
-const todos: Todo[] = [];
+const todos: Todo[] = readTodos();
+todos.forEach(createTodo);
 
-// można określić typ elementu w momencie wywołania zamiast przypisywać przy definiowaniu
-// (<HTMLButtonElement>btn).addEventListener("click", function () {
-//   const inputValue: string = input.value;
-//   alert(inputValue);
-//   input.value = "";
-// });
+function readTodos(): Todo[] {
+  const todosJSON = localStorage.getItem("todos");
+  if (todosJSON === null) return [];
+  return JSON.parse(todosJSON);
+}
 
+// przekazanie eventu możliwe po wskazaniu, że to event
 function handleSubmit(e: SubmitEvent): void {
   e.preventDefault();
 
@@ -30,20 +31,30 @@ function handleSubmit(e: SubmitEvent): void {
   createTodo(newTodo);
   todos.push(newTodo);
 
+  setStorage();
 
   input.value = "";
 }
 
-function createTodo(todo: Todo):void {
-    const newListItem = document.createElement("li");
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-  
-    newListItem.append(todo.text);
-    newListItem.append(checkbox);
-  
-    // korzystanie z ? żeby zabezpieczyć się przed możliwym null, gdy nie wiadomo czy element istnieje i/lub nie użylismy ! przy definiowaniu
-    list?.append(newListItem);
+function createTodo(todo: Todo): void {
+  const newListItem = document.createElement("li");
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.checked = todo.completed;
+  checkbox.addEventListener("change", function(){
+    todo.completed = checkbox.checked;
+    setStorage();
+  })
+
+  newListItem.append(todo.text);
+  newListItem.append(checkbox);
+
+  // korzystanie z ? żeby zabezpieczyć się przed możliwym null, gdy nie wiadomo czy element istnieje i/lub nie użylismy ! przy definiowaniu
+  list?.append(newListItem);
+}
+
+function setStorage(): void {
+    localStorage.setItem("todos", JSON.stringify(todos));
 }
 
 form.addEventListener("submit", handleSubmit);
