@@ -66,6 +66,45 @@ class Jacket {
         console.log(`${this.color} ${this.brand} jacket`);
     }
 }
-const bike = new Bike("red");
-const jacket = new Jacket("Prada", "black");
-jacket.print();
+// const bike = new Bike("red");
+// const jacket = new Jacket("Prada", "black");
+// jacket.print();
+// klasy abstrakcyjne - nie mozna tworzyc bezpośrednio z nich obiektów, są parentami dla innych klas
+class Employee {
+    firstName;
+    lastName;
+    // mogą zawierać normalne properties i konstruktor
+    constructor(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+    // można oczywiście wprowadzać gotowe metody
+    greet() {
+        console.log("Hello");
+    }
+}
+class FullTimeEmployee extends Employee {
+    salary;
+    // rozszerzanie konstruktora deklarując properties bezpośrednio w argumentach nie wymaga przpisania przez this,
+    // nadal jednak wymaga przekazania argumentów wyżej przez super()
+    constructor(firstName, lastName, salary) {
+        super(firstName, lastName);
+        this.salary = salary;
+    }
+    // klasa rodzica wymaga implementacji metody getPay
+    getPay() {
+        return this.salary;
+    }
+}
+class PartTimeEmployee extends Employee {
+    hoursWorked;
+    hourlyRate;
+    constructor(firstName, lastName, hoursWorked, hourlyRate) {
+        super(firstName, lastName);
+        this.hoursWorked = hoursWorked;
+        this.hourlyRate = hourlyRate;
+    }
+    getPay() {
+        return this.hourlyRate * this.hoursWorked;
+    }
+}

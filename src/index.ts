@@ -72,6 +72,48 @@ class Jacket implements Colorful, Printable {
   }
 }
 
-const bike = new Bike("red");
-const jacket = new Jacket("Prada", "black");
-jacket.print();
+// const bike = new Bike("red");
+// const jacket = new Jacket("Prada", "black");
+// jacket.print();
+
+// klasy abstrakcyjne - nie mozna tworzyc bezpośrednio z nich obiektów, są parentami dla innych klas
+abstract class Employee {
+  // mogą zawierać normalne properties i konstruktor
+  constructor(public firstName: string, public lastName: string) {}
+
+  // abstrakcyjne metody w abstrakcyjnych klasach są tylko informacją - wymagają implementacji w klasie dziecka.
+  // określa się nazwę metody i typ zwracanej wartości i te elementy muszą być spełnione w klasie dziecka
+  abstract getPay(): number;
+
+  // można oczywiście wprowadzać gotowe metody
+  public greet(): void {
+    console.log("Hello");
+  }
+}
+
+class FullTimeEmployee extends Employee {
+  // rozszerzanie konstruktora deklarując properties bezpośrednio w argumentach nie wymaga przpisania przez this,
+  // nadal jednak wymaga przekazania argumentów wyżej przez super()
+  constructor(firstName: string, lastName: string, public salary: number) {
+    super(firstName, lastName);
+  }
+
+  // klasa rodzica wymaga implementacji metody getPay
+  getPay(): number {
+    return this.salary;
+  }
+}
+
+class PartTimeEmployee extends Employee {
+  constructor(
+    firstName: string,
+    lastName: string,
+    public hoursWorked: number,
+    public hourlyRate: number
+  ) {
+    super(firstName, lastName);
+  }
+  getPay(): number {
+    return this.hourlyRate * this.hoursWorked;
+  }
+}
