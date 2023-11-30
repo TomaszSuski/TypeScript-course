@@ -46,8 +46,32 @@ class InheritedPlayer extends Player {
   }
 }
 
-const player = new InheritedPlayer("John", "Doe");
-console.log(player);
-player.maxScore = 11111;
-console.log(player.score);
+// const player = new InheritedPlayer("John", "Doe");
+// console.log(player);
+// player.maxScore = 11111;
+// console.log(player.score);
 
+interface Colorful {
+  color: string;
+}
+
+interface Printable {
+  print(): void;
+}
+
+// klasy mogą być implementacjami interfejsów
+class Bike implements Colorful {
+  constructor(public color: string) {}
+}
+
+// mogą implementować wiele interfejsów i muszą spełniać warunki wszystkich
+class Jacket implements Colorful, Printable {
+  constructor(public brand: string, public color: string) {}
+  print(): void {
+    console.log(`${this.color} ${this.brand} jacket`);
+  }
+}
+
+const bike = new Bike("red");
+const jacket = new Jacket("Prada", "black");
+jacket.print();

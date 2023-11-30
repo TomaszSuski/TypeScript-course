@@ -47,7 +47,25 @@ class InheritedPlayer extends Player {
         this.setScore(newScore);
     }
 }
-const player = new InheritedPlayer("John", "Doe");
-console.log(player);
-player.maxScore = 11111;
-console.log(player.score);
+// klasy mogą być implementacjami interfejsów
+class Bike {
+    color;
+    constructor(color) {
+        this.color = color;
+    }
+}
+// mogą implementować wiele interfejsów i muszą spełniać warunki wszystkich
+class Jacket {
+    brand;
+    color;
+    constructor(brand, color) {
+        this.brand = brand;
+        this.color = color;
+    }
+    print() {
+        console.log(`${this.color} ${this.brand} jacket`);
+    }
+}
+const bike = new Bike("red");
+const jacket = new Jacket("Prada", "black");
+jacket.print();
