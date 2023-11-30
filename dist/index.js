@@ -108,3 +108,4 @@ class PartTimeEmployee extends Employee {
         return this.hourlyRate * this.hoursWorked;
     }
 }
+// klasy mogą jednocześnie rozszerzać klasy rodziców i implementować interfejsy!
