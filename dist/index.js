@@ -59,19 +59,31 @@ class Player {
   }
 }
 
-const player1 = new Player("John", "Malkovich");
-console.log(player1);
-player1.taunt();
-player1.loseLife();
-console.log(player1._numLives);
-console.log(player1.getScore());
-player1.setScore(5);
-console.log(player1.getScore());
-console.log(player1.fullName);
+class GameMaster extends Player {
+  constructor(first, last, capabilities) {
+    // dodanie konstruktora w klasie dziedziczącej wymaga wywołania super konstruktora (klasy rodzica)
+    super(first, last);
+    this.capabilities = capabilities;
+  }
+  isGameMaster = true;
+}
+
+// const player1 = new Player("John", "Malkovich");
+// console.log(player1);
+// player1.taunt();
+// player1.loseLife();
+// console.log(player1._numLives);
+// console.log(player1.getScore());
+// player1.setScore(5);
+// console.log(player1.getScore());
+// console.log(player1.fullName);
 // player1.score = -12;
-player1.score = 12;
-console.log(player1.score);
-player1.fullName = "Kurt Russell";
-console.log(player1.fullName);
-const player2 = Player.defaultPlayer();
-console.log(player2);
+// player1.score = 12;
+// console.log(player1.score);
+// player1.fullName = "Kurt Russell";
+// console.log(player1.fullName);
+// const player2 = Player.defaultPlayer();
+// console.log(player2);
+
+const gameMaster = new GameMaster("Keanu", "Reeves", ["enhance enemies", "rebuild the world"]);
+console.log(gameMaster);
