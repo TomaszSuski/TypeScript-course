@@ -29,3 +29,8 @@ function someDemo(x, y) {
     if (x === y) {
     }
 }
+function getRuntime(media) {
+    if ("duration" in media)
+        return media.duration;
+    return media.episodeDuration * media.numEpisodes;
+}

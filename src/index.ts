@@ -26,8 +26,24 @@ function printThoseToo(word?: string) {
 // pusty string też jest falsy!
 
 // mozna utworzyć safeguard porównując równość - jesli oba elementy są takie same w ponizszym przykładzie to oba są stringiem
-function someDemo (x: string | number, y: string | null) {
-  if(x===y){
-
+function someDemo(x: string | number, y: string | null) {
+  if (x === y) {
   }
+}
+
+// używanie operatora "in" pozwala sprawdzać prawdziwość istnienia klucza w obiekcie/tablicy
+interface Movie {
+  title: string;
+  duration: number;
+}
+
+interface TVShow {
+  title: string;
+  numEpisodes: number;
+  episodeDuration: number;
+}
+
+function getRuntime(media: Movie | TVShow) {
+  if ("duration" in media) return media.duration;
+  return media.episodeDuration * media.numEpisodes;
 }
