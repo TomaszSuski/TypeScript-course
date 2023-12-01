@@ -34,3 +34,12 @@ function getRuntime(media) {
         return media.duration;
     return media.episodeDuration * media.numEpisodes;
 }
+// uzywanie instanceof narrowing do sprawdzania czy dany argument jest instancją danej klasy
+function printFullDate(date) {
+    if (date instanceof Date) {
+        console.log(date.toLocaleString());
+    }
+    else {
+        console.log(new Date(date).toLocaleString());
+    }
+}
