@@ -28,3 +28,8 @@ function getRandomElement<T>(list: T[]): T {
 }
 
 console.log(getRandomElement<string>(["a", "b", "c"]));
+
+// inferencja typów działa też w tym przypadku
+// np. podanie argumentu w postaci tablicy liczb, zwraca typ number
+const el = getRandomElement([1, 2, 3]);
+
