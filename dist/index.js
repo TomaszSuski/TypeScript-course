@@ -5,3 +5,22 @@ function triple(value) {
         return value.repeat(3);
     return value * 3;
 }
+// dla paramentrów, które mogą być null (np. szukane elementy DOM) stosuje się truthyness guard
+function printLetters(word) {
+    if (word) {
+        for (let char of word) {
+            console.log(char);
+        }
+    }
+    return;
+}
+// alternatywny zapis parametru (string/undefined)
+function printThoseToo(word) {
+    if (word) {
+        for (let char of word) {
+            console.log(char);
+        }
+    }
+    return;
+}
+// pusty string też jest falsy!
