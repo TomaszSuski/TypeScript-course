@@ -58,3 +58,15 @@ function makeEpmtyArray() {
 const defArr = makeEpmtyArray();
 // mozna podać typ i będzie array podanych typów
 const strArr = makeEpmtyArray();
+class PlayList {
+    queue = [];
+    add(el) {
+        this.queue.push(el);
+    }
+}
+const videos = new PlayList();
+videos.add({
+    title: "rambo",
+    director: "don't know",
+    scriptAuthor: "don't know either",
+});

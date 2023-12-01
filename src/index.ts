@@ -68,10 +68,9 @@ console.log(getDoubleLength({ name: "whatever", length: 20 }));
 // działa też na wbudowane obiekty mające length - np. stringi czy array
 console.log(getDoubleLength([1, 2]));
 
-
 // default value dla typu parametru dodaje się znakiem równości
 function makeEpmtyArray<T = number>(): T[] {
-  return []
+  return [];
 }
 
 // default da arry of numbers
@@ -79,3 +78,28 @@ const defArr = makeEpmtyArray();
 
 // mozna podać typ i będzie array podanych typów
 const strArr = makeEpmtyArray<string>();
+
+// generic types można przypisywac też klasom
+interface Song {
+  title: string;
+  artist: string;
+}
+interface Video {
+  title: string;
+  director: string;
+  scriptAuthor: string;
+}
+
+class PlayList<T> {
+  public queue: T[] = [];
+  add(el: T) {
+    this.queue.push(el);
+  }
+}
+
+const videos = new PlayList<Video>();
+videos.add({
+  title: "rambo",
+  director: "don't know",
+  scriptAuthor: "don't know either",
+});
