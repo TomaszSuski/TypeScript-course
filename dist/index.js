@@ -26,3 +26,13 @@ console.log(getRandomElement(["a", "b", "c"]));
 // inferencja typów działa też w tym przypadku
 // np. podanie argumentu w postaci tablicy liczb, zwraca typ number
 const el = getRandomElement([1, 2, 3]);
+// łączenie kilku typów geneerycznych jest także mozliwe w jednej funkcji
+// nazwy typów oddziela się przecinkiem, zgodnie zkonwencją przypisuje się kolejne litery alfabetu
+// TS sam poprawnie wywnioskuje jaki będzie typ zwracany
+function merge(object1, object2) {
+    return {
+        ...object1,
+        ...object2,
+    };
+}
+const combo = merge({ name: "John" }, { lastName: "Doe" });
