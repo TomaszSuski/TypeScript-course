@@ -36,3 +36,17 @@ function merge(object1, object2) {
     };
 }
 const combo = merge({ name: "John" }, { lastName: "Doe" });
+// powyższy przykład nie uwzględnia sprawdzenia poprawności typu - zakładamy, że to obiekty, ale można podać coś z basic type (np. number). Funkcja nie zadziała jak oczekujemy
+// w tym celu mozna dodać type constraint - zawężenie typu do określonego/ych
+function merge2(object1, object2) {
+    return {
+        ...object1,
+        ...object2,
+    };
+}
+function getDoubleLength(arg) {
+    return arg.length * 2;
+}
+console.log(getDoubleLength({ name: "whatever", length: 20 }));
+//działa też na wbudowane obiekty mające length - np. stringi czy array
+console.log(getDoubleLength([1, 2]));

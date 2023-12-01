@@ -44,3 +44,26 @@ function merge<T, U>(object1: T, object2: U) {
 }
 
 const combo = merge({ name: "John" }, { lastName: "Doe" });
+// powyższy przykład nie uwzględnia sprawdzenia poprawności typu - zakładamy, że to obiekty, ale można podać coś z basic type (np. number). Funkcja nie zadziała jak oczekujemy
+
+// w tym celu mozna dodać type constraint - zawężenie typu do określonego/ych
+function merge2<T extends object, U extends object>(object1: T, object2: U) {
+  return {
+    ...object1,
+    ...object2,
+  };
+}
+// dzięki takiemu zapisowi, oba argumenty muszą być obiektami. Dowolnymi, ale obiektami.
+
+// inny przykład generycznego typu, który tym razem rozszerza interfejs
+interface Lengthy {
+  length: number;
+}
+
+function getDoubleLength<T extends Lengthy>(arg: T): number {
+  return arg.length * 2;
+}
+
+console.log(getDoubleLength({ name: "whatever", length: 20 }));
+//działa też na wbudowane obiekty mające length - np. stringi czy array
+console.log(getDoubleLength([1, 2]));
