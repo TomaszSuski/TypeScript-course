@@ -1,17 +1,25 @@
 "use strict";
-// wykrzyknik zaznacza element jako istniejący na pewno, nie null. Eliminuje union type z null.
-const btn = document.getElementById("btn");
-const input = document.getElementById("todoinput");
-// wyszukanie po typie elementu podpowiada TStyp
-const form = document.querySelector("form");
-// można określić typ elementu w momencie wywołania zamiast przypisywać przy definiowaniu
-// (<HTMLButtonElement>btn).addEventListener("click", function () {
-//   const inputValue: string = input.value;
-//   alert(inputValue);
-//   input.value = "";
-// });
-function handleSubmit(e) {
-    e.preventDefault();
-    console.log("Submitted");
+// zapis skrótowy typowanej tablicy
+// const nums: number[] = [];
+// zapis generyczny typowanej tablicy (wykorzystuje istniejący interfejs Array)
+// "T" podane w nawiasie: <T> okresla typ przyjmowanych argumentów i determinuje typ zwracanych danych
+const nums = [];
+// wykorzystanie w istniejących metodach
+const inputEl = document.querySelector("#username");
+// inputEl może być null, więc value będzie undefined. Przed przypisaniem trzeba sprawdzić czy istnieje.
+// łatwiej dodać wykrzyknik na końcu przypisania elementu do zmiennej, ale trzeba być pewnym, że istnieje
+typeof inputEl?.value === "string" && (inputEl.value = "smthn");
+// własne funkcje moga mieć przypisany generyczny typ (poniżej <Type>, ale zazwyczaj <T> - nazwa nie ma znaczenia)
+// następnie przypisuje się ten typ normalnie do argumentu i jako typ zwracany
+function identity(item) {
+    return item;
 }
-form.addEventListener("submit", handleSubmit);
+// typ zwracany moez być użyty tez np, w tablicach itp.
+function identities(item) {
+    return [item];
+}
+// również typ argumentu może być typem elementów tablicy podanej jako argument
+function getRandomElement(list) {
+    return list[Math.floor(Math.random() * list.length)];
+}
+console.log(getRandomElement(["a", "b", "c"]));
