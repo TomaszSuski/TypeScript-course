@@ -7,4 +7,11 @@
 // trzeba przy tym pamiętać, że importuje się pliki .js bo to one po kompilacji będą używane:
 import { add } from "./utils.js";
 
-console.log(add(1, 2););
+console.log(add(1, 2));
+
+
+// żeby można było korzystać z importów/eksportów i modułów w przeglądarce, trzeba ustawić odpowiedni rodzaj kompilacji w tsconfig.json
+// "module" musi mieć wartośc "EScokolwiek", domyślnie ma "commonjs"
+// dodatkowo w pliku html importowany skrypt musi mieć okreslony type="module"
+// w przeciwnym wypadku przeglądarka nie rozpoznaje niektórych elementów skompilowanych plików 
+// (node tak i do pracy w konsoli to jest ok, przy czym po zmianie z kolei nie działa w node, przynajmniej bez odpowiednich zmian w package.json)
