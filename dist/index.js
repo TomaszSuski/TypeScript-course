@@ -22,3 +22,5 @@ axios_1.default
 function printUser(user) {
     console.log(user.name);
 }
+// working with lodash
+// lodash nie ma pliku deklaracji typów więc TS wskaże to jako błąd przy imporcie

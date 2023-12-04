@@ -4,6 +4,8 @@
 // w tej części będą wykonywane requesty za pomocą biblioteki axios. npm install axios przed rozpoczęciem
 
 import axios from "axios";
+import _ from "lodash";
+
 const URL = "https://jsonplaceholder.typicode.com/users/1";
 
 interface User {
@@ -45,3 +47,6 @@ axios
 function printUser(user: User): void {
   console.log(user.name);
 }
+
+// working with lodash
+// lodash nie ma pliku deklaracji typów więc TS wskaże to jako błąd przy imporcie
