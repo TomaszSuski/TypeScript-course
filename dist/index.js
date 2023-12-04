@@ -65,6 +65,12 @@ function farmAnimalSound(animal) {
             return "muu";
         case "rooster":
             return "kukuryku";
+        default:
+            // switch nigdy nie powinien wejść w default, jeśli wszystkie przypadki obsłuzone sa poprawnie
+            // to taki safeguuard gdyby np. dodać kolejny typ i zapomnieć go obsłużyć w switchu
+            // wprzypadku pominięcia typu Sheep TS wskazuje błąd przypisania never do animal
+            const _exhaustiveCheck = animal;
+            return _exhaustiveCheck;
     }
 }
 // oczywiście w typ wypadku kind jest jedną z wymaganych właściwości typu i każda zmienna stworzona wg takiego typu musią ją również posiadać

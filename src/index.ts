@@ -108,10 +108,18 @@ interface Pig {
   age: number;
 }
 
-type FarmAnimal = Pig | Rooster | Cow;
+// przykład typu do sprawdzenia przez never, nie obsłużony w switchu
+interface Sheep {
+  name: string;
+  age: number;
+  weight: number;
+  kind: "sheep";
+}
+
+type FarmAnimal = Pig | Rooster | Cow | Sheep;
 
 // w każdym z pzypadków switcha poniżej TS wie dokłądnie jaki jest typ argumentu
-function farmAnimalSound(animal: FarmAnimal): string {
+function farmAnimalSound(animal: FarmAnimal){
   switch (animal.kind) {
     case "pig":
       return "oink";
@@ -119,6 +127,12 @@ function farmAnimalSound(animal: FarmAnimal): string {
       return "muu";
     case "rooster":
       return "kukuryku";
+    default:
+      // switch nigdy nie powinien wejść w default, jeśli wszystkie przypadki obsłuzone sa poprawnie
+      // to taki safeguuard gdyby np. dodać kolejny typ i zapomnieć go obsłużyć w switchu
+      // wprzypadku pominięcia typu Sheep TS wskazuje błąd przypisania never do animal
+      const _exhaustiveCheck: never = animal;
+      return _exhaustiveCheck;
   }
 }
 
