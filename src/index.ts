@@ -56,3 +56,29 @@ function printFullDate(date: string | Date) {
     console.log(new Date(date).toLocaleString());
   }
 }
+
+// Type predicates
+
+interface Cat {
+  name: string;
+  numLives: number;
+}
+
+interface Dog {
+  name: string;
+  breed: string;
+}
+
+// prosta funkcja zwracająca boolean true dla kota, ale żeby TS wiedział, że po jej zastosowaniu mamy kota, w typie zwracanym używa się "argument is Type"
+// w tym wypadku animal is Cat
+// zapis "arg is Type" to właśnie Type Predicate
+function isCat(animal: Cat | Dog): animal is Cat {
+  return (animal as Cat).numLives !== undefined;
+}
+
+// następnie można uzyć funkcji determinującej typ do sprawdzenia typu
+// w tym wypadku TS dokładnie wie, że warunek spełnia tylko typ Cat, a wprzypadku niespełnienia warunku to jest Dog
+function makeNoise(animal: Cat | Dog): string {
+  if (isCat(animal)) return "Meow";
+  return "Bark";
+}
