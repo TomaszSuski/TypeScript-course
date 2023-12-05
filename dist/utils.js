@@ -1,5 +1,3 @@
-// import dodany jako przykład tego, że dependencies nie są ładowane w prosty sposób.
-// tu do gry wchodzi webpack
 import _ from "lodash";
 export function add(x, y) {
     return _.add(x, y);
