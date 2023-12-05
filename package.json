@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "webpack serve",
+    "serve": "webpack serve --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "start": "lite-server"
   },
@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.202",
+    "clean-webpack-plugin": "^4.0.0",
     "ts-loader": "^9.5.1",
     "typescript": "^5.3.2",
     "webpack": "^5.89.0",
