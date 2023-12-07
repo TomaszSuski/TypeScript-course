@@ -5,7 +5,7 @@ import Greeter from "./Components/Greeter";
 function App() {
   return (
     <div className="App">
-      <Greeter />
+      <Greeter personName="stranger"/>
     </div>
   );
 }
