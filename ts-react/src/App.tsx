@@ -6,15 +6,15 @@ import ShoppingList from "./Components/ShoppingList";
 import ShoppingListItem from "./models/ShoppingListItem";
 import ShoppingItemForm from "./Components/ShoppingItemForm";
 import ShoppingItemFormWithRef from "./Components/ShoppingItemFormWithRef";
+import { getNextId } from "./Components/helpers";
 
 function App() {
   // dla poprawnego działania usestate należy podać typ przyjmowanych danych jako generyk
   const [items, setItems] = useState<ShoppingListItem[]>([]);
   const addItem = (product: string, quantity: number) => {
-    const id = items.length > 0 ? items[items.length - 1].id + 1 : 1;
+    const id = getNextId(items);
     setItems((items)=>[...items, { id, product, quantity }]);
   };
-  console.log(items);
 
   return (
     <div className="App">
